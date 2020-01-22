@@ -33,21 +33,8 @@ public class PredictorClass {
         }
         FileWriter fileWriter = new FileWriter("F:\\IITian's\\IDEA_WS\\Skin Detection\\Data\\dataSetout.txt");
         fileReader.close();
-        for(int ii=0; ii<256; ii++){
-
-            for(int jj=0; jj<256; jj++){
-
-                for(int k=0; k<256; k++){
-
-                    if(k==255)
-                        fileWriter.write(pixelPro[ii][jj][k] +"\n");
-                    else
-                        fileWriter.write(pixelPro[ii][jj][k] +",");
-
-                }
-            }
-        }
         createImage();
+        
         return;
     }
 
