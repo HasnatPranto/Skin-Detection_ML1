@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TrainerClass {
     double [][][] skinPixelMatrix=new double[256][256][256];
-    double[][][] p=new double[256][256][256];
+    double singlePixel_POS;
     double[][][] nonSkinPixelMatrix=new double[256][256][256];
 
     public int getRedComp(int pix){
@@ -105,21 +105,19 @@ public class TrainerClass {
 
                     if(nonSkinPixelMatrix[i][j][k]==0){
                         if(skinPixelMatrix[i][j][k]!=0) 
-                            p[i][j][k]=2;
+                            singlePixel_POS=2;
                         else  
-                            p[i][j][k]=0;
+                            singlePixel_POS=0;
                     }
                     else 
-                        p[i][j][k]= skinPixelMatrix[i][j][k]/nonSkinPixelMatrix[i][j][k];
+                        singlePixel_POS= skinPixelMatrix[i][j][k]/nonSkinPixelMatrix[i][j][k];
                         
-                        fileWriter.write(p[i][j][k]+",");
+                        fileWriter.write(singlePixel_POS+",");
                 }
                         fileWriter.write("\n");
             }
         }
 
-        fileWriter.flush(); fileWriter.close();
-        
+        fileWriter.flush(); fileWriter.close();      
     }
-
 }
