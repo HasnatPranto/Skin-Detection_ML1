@@ -2,6 +2,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.List;
 
 public class PredictorClass {
 
@@ -31,19 +32,16 @@ public class PredictorClass {
                 }
             }
         }
-        FileWriter fileWriter = new FileWriter("F:\\IITian's\\IDEA_WS\\Skin Detection\\Data\\dataSetout.txt");
+
         fileReader.close();
-        createImage();
-        
-        return;
     }
 
 
-    public void createImage() throws IOException {
+    public void createImage(List<File> images) throws IOException {
 
+        reloadData();
         int h,w, r,g,b;
-        File folder= new File("F:\\IITian's\\IDEA_WS\\Skin Detection\\TestSub"), outputFile=null;
-        File[] images=folder.listFiles();
+        File outputFile=null;
         BufferedImage inputImg=null,outputImg=null;
 
         for(File curImage: images){
@@ -51,9 +49,9 @@ public class PredictorClass {
             inputImg= ImageIO.read(new File(curImage.getAbsolutePath()));
 
             w=inputImg.getWidth();
-          
+
             h=inputImg.getHeight();
-           
+
             outputImg= new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);
 
             for(int x=w-1;x>=0;x--){
@@ -75,6 +73,5 @@ public class PredictorClass {
             ImageIO.write(outputImg, "jpg", outputFile);
         }
     }
-
-
 }
+

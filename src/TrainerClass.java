@@ -1,10 +1,10 @@
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
+        import java.awt.*;
+        import java.awt.image.BufferedImage;
+        import java.io.File;
+        import java.io.FileWriter;
+        import java.io.IOException;
+        import java.util.List;
 
 public class TrainerClass {
     double [][][] skinPixelMatrix=new double[256][256][256];
@@ -16,11 +16,11 @@ public class TrainerClass {
         return pix >> 16 & 0xff;
     }
     public int getGreenComp(int pix){
-        
+
         return pix >> 8 & 0xff;
     }
     public int getBlueComp(int pix){
-        
+
         return pix & 0xff;
     }
 
@@ -36,7 +36,7 @@ public class TrainerClass {
 
         int serial=0,height,width,pix,compR,compG,compB,skinPixCnt=0,nSkinPixCnt=0;
 
-        String orgImageName="F:\\IITian's\\IDEA_WS\\Skin Detection\\ibtd\\",maskImageName="F:\\IITian's\\IDEA_WS\\Skin Detection\\ibtd\\Mask\\";
+        String orgImageName="F:\\IITian's\\IDEA_WS\\Skin Detection\\ibtd\\",maskImageName="F:\\IITian's\\IDEA_WS\\Skin Detection\\Mask\\";
 
         BufferedImage orgImage=null;
 
@@ -95,7 +95,7 @@ public class TrainerClass {
 
                     nonSkinPixelMatrix[i][j][k]/=nSkinPixCnt;
                     skinPixelMatrix[i][j][k]/=skinPixCnt;
-                    
+
                 }}}
         for(int i=0; i<256; i++){
 
@@ -104,20 +104,21 @@ public class TrainerClass {
                 for(int k=0; k<256; k++){
 
                     if(nonSkinPixelMatrix[i][j][k]==0){
-                        if(skinPixelMatrix[i][j][k]!=0) 
+                        if(skinPixelMatrix[i][j][k]!=0)
                             singlePixel_POS=2;
-                        else  
+                        else
                             singlePixel_POS=0;
                     }
-                    else 
+                    else
                         singlePixel_POS= skinPixelMatrix[i][j][k]/nonSkinPixelMatrix[i][j][k];
-                        
-                        fileWriter.write(singlePixel_POS+",");
+
+                    fileWriter.write(singlePixel_POS+",");
                 }
-                        fileWriter.write("\n");
+                fileWriter.write("\n");
             }
         }
 
-        fileWriter.flush(); fileWriter.close();      
+        fileWriter.flush(); fileWriter.close();
     }
 }
+
